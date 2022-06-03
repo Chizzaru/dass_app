@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+    {# Load the tag library #}
+    {% load bootstrap5 %}
+    
+    {# Load CSS and JavaScript #}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+    
+    {# Display django.contrib.messages as Bootstrap alerts #}
+    {% bootstrap_messages %}
+
+
+<body>
+    <div class="container" style="text-shadow:3px 3px 3px gray;padding-top:50px;padding-bottom:50px;background-image: url('/static/dass_app/background.png');background-repeat: no-repeat;background-size: cover;">
+        <h1>Result : </h1><hr>
+        <table class="table table-bordered">
+            <tr>
+                <th class="text-center">Depression Score</th>
+                <th class="text-center">Anxiety Score</th>
+                <th class="text-center">Stress Score</th>
+            </tr>
+            
+            <tr>
+                {% for x in score %}
+                <td class="text-center" style="font-size: 50px;">{{ x }}</td>
+                {% endfor %}
+            </tr>
+
+        </table><br><br>
+        <h2>Depression Anxiety Stress Scale</h2><hr>
+        <table class="table table-bordered">
+            <tr>
+                <th></th>
+                <th>Depression</th>
+                <th>Anxiety</th>
+                <th>Stress</th>
+            </tr>
+            <tr>
+                <td>Normal</td>
+                <td>0-4</td>
+                <td>0-3</td>
+                <td>0-7</td>
+            </tr>
+            <tr>
+                <td>Mild</td>
+                <td>5-6</td>
+                <td>4-5</td>
+                <td>8-9</td>
+            </tr>
+            <tr>
+                <td>Moderate</td>
+                <td>7-10</td>
+                <td>6-7</td>
+                <td>10-12</td>
+            </tr>
+            <tr>
+                <td>Severe</td>
+                <td>11-13</td>
+                <td>8-9</td>
+                <td>13-16</td>
+            </tr>
+            <tr>
+                <td>Extremely Severe</td>
+                <td>14+</td>
+                <td>10+</td>
+                <td>17+</td>
+            </tr>
+        </table><br><br>
+        <a href="form"><< Back to Form</a>
+    </div>
+
+
+</body>
+</html>

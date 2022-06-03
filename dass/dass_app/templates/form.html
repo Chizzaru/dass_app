@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+    {# Load the tag library #}
+    {% load bootstrap5 %}
+    
+    {# Load CSS and JavaScript #}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+    
+    {# Display django.contrib.messages as Bootstrap alerts #}
+    {% bootstrap_messages %}
+
+    {% load static %}
+
+<body>
+    <div class="container" style="padding-top:50px;padding-bottom:50px;background-image: url('/static/dass_app/background.png');background-repeat: no-repeat;background-size: cover;">
+        <h1>Depression Anxiety Stress Scale Form</h1><hr>
+        <p>Please read each statement and select your answer. This choices
+            indicates how much the statement applied to you over the past week. There
+            are no right or wrong answers. Do not spend too much time
+            on any statement.
+        </p>
+        <form action="submitform" method="post" class="form">
+            {% csrf_token %}
+            <label>Name : </label>
+            <input type="text" name="name" class="form-control" required/><br>
+            {% for x in myQuestions %}
+            <label style="text-shadow: 3px 3px 3px gray;">{{x.question_text}}</label><br>
+                <input type="hidden" name="question[]" value="{{ x.id }}"/>
+                Choices :
+                <select id="{{ x.id }}" name="{{ x.id }}" style="width:350px;padding:5px;text-align: center;">
+                    {% for y in myChoices %}
+                    <option value="{{ y.id }}">{{ y.choice_text }}</option>
+                    {% endfor %}
+                </select><br>
+            {% endfor %}
+            <hr>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+
+
+</body>
+</html>
